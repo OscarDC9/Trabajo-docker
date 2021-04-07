@@ -1,60 +1,95 @@
 # Trabajo Docker
+
 ## Capítulos 1,2,3
+
 En estos 3 capítulos te introducen al curso de docker
 
 ## Capítulos 4,5,6
-Las bases de datos almacenan y organizan los datos.
 
-Se pueden llamar RDBMS. 
-
-Debes elegir las RDBMS que se adapten a tus necesidades, por ejemplo con interfaz gráfica o sin interfaz gráfica
+- Las bases de datos almacenan y organizan los datos.
+- Se pueden llamar RDBMS.
+- Debes elegir las RDBMS que se adapten a tus necesidades, por ejemplo con interfaz gráfica o sin interfaz gráfica
 
 ## Capítulo 7
+
 Tiene 2 partes el que gestiona y el que almacena los datos.
 
 ## Capítulo 8
+
 Los RDBMS ofrecen al cliente los datos que necesite.
 
 ## Capítulo 9
-Vas a la página docker.com y instalas el docker adecuado para tu dispositivo.
-En tu ordenador vas a descargas y ejecutas el iniciador de docker.
+
+1. Vas a la [página de docker](docker.com) e instalas el docker adecuado para tu dispositivo.
+2. En tu ordenador vas a descargas y ejecutas el iniciador de docker.
 
 ## Capítulo 10
+
 Comandos de docker en el txt
 
- Microsoft SQL docker run --name SQLServer2019 -e "ACCEPT_EULA=Y" -E"SA_PASSWORD=Adam123456" -p 1404:1433 -d  -latest
+**Microsoft SQL**
 
- Postgre SQL docker run --name postgresql -p 5401:5432 -e postgres_PASSWORD=Adam123456 -d 
+```bash
+docker run --name SQLServer2019 -e "ACCEPT_EULA=Y" -E "SA_PASSWORD=Adam123456" -p 1404:1433 -d -latest
+```
+
+**PostgreSQL**
+
+```bash
+docker run --name postgresql -p 5401:5432 -e postgres_PASSWORD=Adam123456 -d
+```
 
 ## Capítulo 11
-Para microsoft sql usa este comando-it sqlserver2019 bash Ahora estas entro del contenedor /opt/mssql-tools/bin/sqlcmd -U sa -P Adam123456 
-Asi se crea una base de tados :CREATE DATABASE mytestdb GO 
+
+### ???
+
+Para Microsoft SQL Server usa este comando-it sqlserver2019 bash
+
+### Dentro del contenedor y crear BD
+
+Ahora estas entro del contenedor
+
+```bash
+/opt/mssql-tools/bin/sqlcmd -U sa -P Adam123456
+```
+
+Asi se crea una base de datos
+
+```sql
+CREATE DATABASE mytestdb GO
+```
 
 ## Capítulos 12,13
-Objetivo: crear un container 
-Solucion en el bloc de notas de ayuda
-View all runing containers docker ps
 
-Stop a container docker stop MySecondSQLServer
+### Objetivo
 
-View all containers docker ps -a
+Crear un container
 
- Start a container docker start MySecondSQLServer
+### Solucion en el bloc de notas de ayuda
 
- Remove a container docker rm MySecondSQLServer
+- View all runing containers: `docker ps`
+- Stop a container: `docker stop MySecondSQLServer`
+- View all containers: `docker ps -a`
+- Start a container: `docker start MySecondSQLServer`
+- Remove a container: `docker rm MySecondSQLServer`
 
 ## Capítulo 14
+
 Hay distintas interfaces gráficas para docker
 
 ## Capítulo 15
+
 Para instalar azure data studio vas a la pagina y escoges el mas adecuado para tu dispositivo
 
 ## Capítulos 16,17
+
 Azure data studio puedes configurarlo a tu gusto, sigue los pasos del video y conseguiras tenerlo a tu gusto
 
 ## Capítulo 18
-Vete a ajustes y cambia el tab color, para que se muestre como una interfaz de comando 
-Para hacer consultas en azure data studio haremos consultas con lenguaje sql
+
+- Vete a ajustes y cambia el tab color, para que se muestre como una interfaz de comando.
+
+Para hacer consultas en azure data studio haremos - consultas con lenguaje sql.
 
 ## Capítulo 19,20
 
@@ -135,36 +170,50 @@ Agregar datos a la tabla
 `INSERT INTO products.products (SKU, ProductName, CategoryID, Size, Price)`
 
 ## Capítulos 37,38,39,40,41,42,43,44,45,46,47
+
 En estos videos explicara como hacer consultas con sql, a continuacion pondre todo los comandos utilizados por el para dichas consultas
-_____
-`-- Renaming columns in the result set with the AS keyword
+
+### Renaming columns in the result set with the `AS` keyword
+
+```sql
 -- Exercise Files > Chapter 7 > AS_Start.sql
+
 SELECT p.ProductName "Product Name",
-    p.Size "Size (Ounces)",
-    p.SKU "Product SKU",
-    p.Price "Price (US Dollars)",
-    c.CategoryDescription "Category Description",
-    c.ProductLine "Product Line"
-FROM products.products p
-    JOIN products.categories c
-        ON p.CategoryID = c.CategoryID`
-;`
-____
-`-- Modify data with built-in functions
+       p.Size "Size (Ounces)",
+       p.SKU "Product SKU",
+       p.Price "Price (US Dollars)",
+       c.CategoryDescription "Category Description",
+       c.ProductLine "Product Line"
+FROM products.products p JOIN products.categories c
+                         ON p.CategoryID = c.CategoryID;
+```
+
+### Modify data with built-in functions
+
+```sql
 -- Exercise Files > Chapter 7 > Functions_Start.sql
 SELECT Price
-FROM products.products;`
+FROM products.products;
+```
 
-`-- View statistical information about pricing
+### View statistical information about pricing
+
+```sql
 SELECT
     MAX(Price) AS "Maximum Price",
     MIN(Price) AS "Minimum Price",
     ROUND(AVG(Price), 2) AS "Average Price"
 FROM products.products;`
+```
 
-`-- Find the products with the highest price
+### Find the products with the highest price
+
+```sql
 SELECT MAX(Price)
-FROM products.products;`
+FROM products.products;
+```
+
+### Fixate na diferencia co que ben agora
 
 `SELECT ProductName, Size, Price
 FROM products.products
